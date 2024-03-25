@@ -3,7 +3,7 @@ import {AsyncPaginate} from 'react-select-async-paginate';
 import { GeoAPIOptions,GeoAPIUrl } from '../../api';
 
 const Search = ({onSearchChange}) => {
-  const [search,setSearch] = React.useState('null')
+  const [search,setSearch] = React.useState('')
  async function  loadOptions(inputValue){
   try {
     const response = await fetch (`${GeoAPIUrl}/cities?minPopulation=1000000&namePrefix=${inputValue}`, GeoAPIOptions);
@@ -27,7 +27,7 @@ const Search = ({onSearchChange}) => {
     onSearchChange(searchData)
   }
   return (
-    <div>
+    <div className='ml-auto w-[300px] p-4'>
       <AsyncPaginate 
       placeholder="Enter City"
       debounceTimeout={600}

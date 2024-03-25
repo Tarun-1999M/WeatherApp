@@ -8,8 +8,8 @@ export default {
     fontFamily: {
       'roboto': ['Roboto', 'sans-serif'],
     },
-    backgroundColor:{
-     'sample':"#d5d4d4"
+    backgroundImage:{
+      'clouds': "url('/icons/clouds.png')",
     }
   },
   plugins: [],

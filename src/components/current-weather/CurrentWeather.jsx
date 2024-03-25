@@ -1,45 +1,70 @@
 import React from 'react'
 
-const CurrentWeather = ({data}) => {
+const CurrentWeather = ({data,forecastData}) => {
+
+
+
+function getDateTime(value){
+const recievedDate = new Date(value)
+const options = {
+  month: 'long',
+  day: 'numeric', 
+  hour: 'numeric', 
+  hour12: true,
+};
+
+const userFormattedDateTime = new Intl.DateTimeFormat('en-US', {
+  ...options,
+}).format(recievedDate);
+
+return(userFormattedDateTime)
+}
+
+
+function getTime(value){
+  const recievedDate = new Date(value * 1000)
+  const options = {
+    month: 'long', 
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit', 
+    hour12: true, 
+  };
+
+const userFormattedDateTime = new Intl.DateTimeFormat('en-US', {
+  ...options,
+  timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone 
+}).format(recievedDate);
+
+return(userFormattedDateTime)
+}
+
+
+
   return (
-    <div className=' shadow-4xl bg-[#333] text-white p-5 w-[400px] mx-auto mt-[20px] rounded-xl shadow-transparent'>
-
-    <div className='flex justify-between items-center'>
     <div>
-        <h1 className='font-bold text-xl'>{data.city}</h1>
-        <p className='text-md'>{data.weather[0].description}</p>
-    </div>
-    <div className='w-[100px]'><img src={`icons/${data.weather[0].icon}.png`} alt="weather-img"/></div>
-    </div>
 
-
-    <div className='flex justify-between items-center'>
-       <div className='text-7xl font-bold'>{Math.round(data.main.temp)}°C</div>
-
-    <div className='w-[100%] pl-[20px]'>
-      <div>
-        <p>Details</p>
+      <div className='flex flex-col items-center justify-center my-[20px]'>
+      <h1 className='font-bold text-4xl'>{data.city}</h1>
+      <p className='mb-[20px]'>{`Long/Lat: ${data.coord.lon}/${data.coord.lat} `}</p>
+      <div className='text-7xl font-bold'>{Math.round(data.main.temp)}°C</div>
+      <p className='text-xl'>{data.weather[0].description}</p>
+      <div className='flex gap-4'>
+        <p><span className='font-bold'>H:</span> {Math.ceil(data.main.temp_max)}°C</p>
+        <p><span className='font-bold'>L:</span> {Math.floor(data.main.temp_min)}°C</p>
       </div>
-      <div className='flex justify-between'>
-        <p>Feels like</p>
-        <p className='font-bold'>{Math.round(data.main.feels_like)}°C</p>
-      </div>
-      <div className='flex justify-between'>
-        <p>Wind</p>
-        <p className='font-bold'>{Math.round(data.wind.speed)} m/s</p>
-      </div>
-      <div className='flex justify-between'>
-        <p>Humidity</p>
-        <p className='font-bold'>{Math.round(data.main.humidity)}%</p>
-      </div>
-      <div className='flex justify-between'>
-        <p>Pressure</p>
-        <p className='font-bold'>{Math.round(data.main.pressure)} hPa</p>
       </div>
 
+      <div className='flex justify-evenly border-2 rounded-2xl p-4 shadow-xl'>
+      {forecastData.map(forecast=>(
+        <div className='flex flex-col items-center'>
+        <p>{getDateTime(forecast.dt_txt)}</p>
+        <div className='w-[100px]'><img src={`icons/${forecast.weather[0].icon}.png`} /></div>
+        <p>{Math.round(forecast.main.temp)}°C</p>
+        </div>
+      ))}
       </div>
-
-  </div>
+      
   </div>
 
   )

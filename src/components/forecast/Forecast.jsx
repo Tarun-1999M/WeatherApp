@@ -6,14 +6,14 @@ const Forecast = ({data}) => {
     const dayOfWeek = new Date().getDay();
     const forecastDays = Days.slice(dayOfWeek,Days.length).concat(Days.slice(0,dayOfWeek))
   return (
-    <div className='my-4'>
-      <div className='text-3xl font-bold'>Daily</div>
+    <div className='my-4  border-2 rounded-xl p-4 shadow-xl'>
+      <div className='text-3xl font-bold'>Daily Forecast</div>
       <Accordion allowZeroExpanded>
       { data.list.slice().splice(0,7).map((item,key)=>(
         <AccordionItem key={key}>
             <AccordionItemHeading>
                 <AccordionItemButton>
-                <div className='flex w-[100%] justify-between items-center bg-[white] rounded-xl my-2 px-2 border-black '>
+                <div className='flex w-[100%] justify-between items-center  rounded-xl my-2 px-2 border-black '>
                    <div className='flex items-center'>
                         <div className='w-[60px]'> <img src={`icons/${item.weather[0].icon}.png`} /></div>
                         <div className='font-bold'>{forecastDays[key]}</div>
