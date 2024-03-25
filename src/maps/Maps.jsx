@@ -8,7 +8,7 @@ const mapRef = useRef(null)
 useEffect(()=>{
 
     async function fetchAirQuality(){
-        const url = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=AIzaSyAmUFqm0j9SNf1uLhE1wHdQ4mVoXQ61sVo"
+        const url = `https://airquality.googleapis.com/v1/currentConditions:lookup?key=${import.meta.env.VITE_GOOGLE_MAP_API_KEY}`
         const requestBody={
             location:{
                 longitude:data.coord.lon,
@@ -50,7 +50,6 @@ useEffect(()=>{
         zoom:8,
         mapId:'7e5c0efd02b0c1fe',
     })
-    console.log(map)
 
    
     const marker = new AdvancedMarkerElement({

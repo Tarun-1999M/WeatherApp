@@ -57,7 +57,7 @@ return(userFormattedDateTime)
 
       <div className='flex justify-evenly border-2 rounded-2xl p-4 shadow-xl'>
       {forecastData.map(forecast=>(
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' key={forecast.dt_txt}>
         <p>{getDateTime(forecast.dt_txt)}</p>
         <div className='w-[100px]'><img src={`icons/${forecast.weather[0].icon}.png`} /></div>
         <p>{Math.round(forecast.main.temp)}°C</p>

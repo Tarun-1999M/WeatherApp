@@ -28,7 +28,6 @@ const charts = ({recievedData,value}) => {
         }
     
     recievedData.map((data,idx)=>{
-        console.log(path.reduce((acc,currentPath)=>acc[currentPath],data))
          hours = hours.concat(getDateTime(data.dt_txt))
          requiredData = requiredData.concat(path.reduce((acc,currentPath)=>acc[currentPath],data))
     })
