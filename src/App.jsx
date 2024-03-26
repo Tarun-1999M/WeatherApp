@@ -39,7 +39,13 @@ function App() {
   return (
     <div className='p-4 bg-clouds min-h-screen w-full bg-cover bg-center'>
       
-      <Search onSearchChange={handleOnSearchChange} />
+      <div className='flex justify-between'>
+     <div>{currentWeather && <Favorites data={currentWeather}/>}</div> 
+     <div> <Search onSearchChange={handleOnSearchChange} /></div>
+      </div>
+
+     
+    
       {currentWeather && forecast && <CurrentWeather data={currentWeather} forecastData={forecast.list.slice().splice(0, 7)} />}
       <div className='grid grid-cols-3 gap-2 my-[20px]'>
         <div>
@@ -67,9 +73,7 @@ function App() {
       </div>
       
       {forecast && <Charts recievedData={forecast.list.slice().splice(0, 7)} value={graph} />}
-      <div>
-      {currentWeather && <Favorites data={currentWeather}/>}
-      </div>
+     
 
     </div>
   )

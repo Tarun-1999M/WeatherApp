@@ -27,7 +27,7 @@ const Search = ({onSearchChange}) => {
     onSearchChange(searchData)
   }
   return (
-    <div className='ml-auto w-[300px] p-4'>
+    <div className=' w-[300px] p-4'>
       <AsyncPaginate 
       placeholder="Enter City"
       debounceTimeout={600}
