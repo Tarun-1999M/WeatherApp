@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import { Accordion,AccordionItemHeading,AccordionItemPanel,AccordionItemButton,AccordionItem } from 'react-accessible-accordion'
+import { GeoAPIOptions,GeoAPIUrl } from "../api";
+import DataFetch from '../DataFetch';
 
-const Favorites = ({data}) => {
+const Favorites = ({data,onSearchChange}) => {
 
   const [fill,setFill] = useState({})
   const [favorites,setFavorites] = useState([])
@@ -12,7 +14,6 @@ const Favorites = ({data}) => {
     if(arr){
     setFill(arr.includes(data.city)? {[data.city]:true} : {})
     }
-    console.log(arr)
   },[data.city])
 
 
@@ -41,6 +42,8 @@ const Favorites = ({data}) => {
   }
 
 
+
+
   return (
   <div>
    <div onClick={handleClick} className='mb-[20px]'>
@@ -51,13 +54,13 @@ const Favorites = ({data}) => {
     <AccordionItem>
       <AccordionItemHeading>
         <AccordionItemButton>
-          <div className='mr-auto font-xl border-2 rounded-xl w-[100px] p-2 text-center text-black'>Favorites</div>
+          <div className='mr-auto font-xl border-2 rounded-xl w-[100px] p-2 text-center text-black cursor-pointer'>Favorites</div>
         </AccordionItemButton>
       </AccordionItemHeading>
       <AccordionItemPanel>
       {
       favorites && favorites.map((item)=>(
-      <div className='border-2 w-[100px] p-2 text-center font-xl mr-auto'>{item}</div>))
+      <div className='border-2 w-[100px] p-2 text-center font-xl mr-auto cursor-pointer'  key={item}>{item}</div>))
     }
       </AccordionItemPanel>
       </AccordionItem>

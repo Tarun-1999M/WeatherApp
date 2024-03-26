@@ -49,7 +49,7 @@ function App() {
       {currentWeather && forecast && <CurrentWeather data={currentWeather} forecastData={forecast.list.slice().splice(0, 7)} />}
       <div className='grid grid-cols-3 gap-2 my-[20px]'>
         <div>
-          {forecast && <Forecast data={forecast} />}
+          {forecast && <Forecast data={forecast} onSearchChange={handleOnSearchChange}/>}
         </div>
         <div >
           {currentWeather && <Stats data={currentWeather} />}
